@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Арифметический калькулятор</title>
+</head>
+<body>
+    <h1>Арифметический калькулятор</h1>
+
+    <form action="/calculate" method="post">
+        <label for="number1">Число 1:</label>
+        <input id="number1" name="number1" required><br>
+
+        <label for="number2">Число 2:</label>
+        <input id="number2" name="number2" required><br>
+
+        <label for="operation">Выберете операцию:</label>
+        <select id="operation" name="operation" required>
+            <option value="add">Сложение</option>
+            <option value="multiply">Умножение</option>
+            <option value="power">Возведение в степень</option>
+            <option value="divide">Деление</option>
+        </select>
+
+        <input type="submit" value="Вычислить">
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                     <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+</body>
+</html>
